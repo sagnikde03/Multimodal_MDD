@@ -1,4 +1,4 @@
-# BiGSTF-Net implementation
+# Multimodal MDD implementation
 
 This is the source code of A Novel Vision Transformer based Multimodal Fusion Approach for Clinical MDD Diagnosis Using EEG and Audio Signals
 
