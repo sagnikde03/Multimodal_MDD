@@ -1,6 +1,6 @@
 """
 ================================================================
-  SliceTransformer-Based Multimodal EEG-Audio Classification
+  SliceTransformer-Based Multimodal (EEG-Audio) MDD Classification
  ------------------------------------------------------------
   This implementation demonstrates end-to-end data loading,
   preprocessing, and training for the proposed SliceTransformer
@@ -57,7 +57,7 @@ class ParallelTransformerEncoderBlock(nn.Module):
         self.mhsa2 = nn.MultiheadAttention(embed_dim=dim, num_heads=num_heads,
                                            dropout=attn_dropout, batch_first=True)
 
-        # small dropout after attention outputs (projection dropout)
+        # dropout after attention outputs (projection dropout)
         self.attn_dropout = nn.Dropout(proj_dropout)
 
         # LayerNorm before MLP (pre-norm)
@@ -91,12 +91,12 @@ class ParallelTransformerEncoderBlock(nn.Module):
         # Pre-attention normalization
         x_norm = self.norm1(x)
 
-        # MHSA path 1
+        # MHSA pathway 1
         attn_out1, _ = self.mhsa1(x_norm, x_norm, x_norm,
                                   attn_mask=attn_mask,
                                   key_padding_mask=key_padding_mask)
 
-        # MHSA path 2
+        # MHSA pathway 2
         attn_out2, _ = self.mhsa2(x_norm, x_norm, x_norm,
                                   attn_mask=attn_mask,
                                   key_padding_mask=key_padding_mask)
